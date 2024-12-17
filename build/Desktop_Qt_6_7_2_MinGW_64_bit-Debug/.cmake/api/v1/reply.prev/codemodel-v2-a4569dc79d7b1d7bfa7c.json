@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-b6ee4f43647698eb424a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "park2",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "park2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-park2-Debug-06deeaadf1f5fe3be51c.json",
+					"name" : "park2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "park2_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-park2_autogen-Debug-f359aa6d175985018bd2.json",
+					"name" : "park2_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "park2_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-park2_autogen_timestamp_deps-Debug-e913cf1314e4536d4cfd.json",
+					"name" : "park2_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/code/application/QT/park2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug",
+		"source" : "D:/code/application/QT/park2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
