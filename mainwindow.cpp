@@ -21,12 +21,12 @@ MainWindow::MainWindow(QWidget *parent)
     importAction = new QAction(ui->menuFile);
 
     saveAction->setShortcut(QKeySequence("Ctrl+S"));
-    saveAction->setStatusTip("淇濆瓨鏁版嵁");
-    saveAction->setText("淇濆瓨鏁版嵁");
+    saveAction->setStatusTip("保存数据");
+    saveAction->setText("保存数据");
 
     importAction->setShortcut(QKeySequence("Ctrl+L"));
-    importAction->setStatusTip("瀵煎叆鏁版嵁");
-    importAction->setText("瀵煎叆鏁版嵁");
+    importAction->setStatusTip("导入数据");
+    importAction->setText("导入数据");
 
     ui->menuFile->addAction(saveAction);
     ui->menuFile->addAction(importAction);
@@ -41,17 +41,17 @@ MainWindow::MainWindow(QWidget *parent)
         Log.log_in(rand);
     });
     connect(ui->parkButton,&QPushButton::clicked,this,[this]{
-        ui->statusbar->showMessage("鍋滆溅鎴愬姛");
+        ui->statusbar->showMessage("停车成功");
         // static QPropertyAnimation *a1 = new QPropertyAnimation(ui->parkButton,"geometry");
         // // a1->setTargetObject(ui->parkButton);
         // // a1->setPropertyName("move");
         // a1->setStartValue(QRect(20,90, 251, 51));
         // a1->setEndValue(QRect(80,360, 251, 51));
-        // // 4.璁剧疆鍔ㄧ敾鐨勬椂闂�
+        // // 4.设置动画的时间
         // a1->setDuration(1000);
-        // // 5.璁剧疆鍔ㄧ敾鐨勭紦鍜屾洸绾�
+        // // 5.设置动画的缓和曲线
         // a1->setEasingCurve(QEasingCurve::Linear);
-        // // 6.璁剧疆鍔ㄧ敾鐨勬挱鏀惧懆鏈�
+        // // 6.设置动画的播放周期
         // a1->setLoopCount(1);
         // a1->start();
     });
@@ -74,7 +74,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::slot()
 {
-    qDebug() << "浣犲ソ";
+    qDebug() << "你好";
 }
 
 void MainWindow::come(QString& str)
@@ -86,35 +86,35 @@ void MainWindow::saveLog()
 {
     if(filePath.isEmpty())
     {
-        filePath = QFileDialog::getOpenFileName(this,tr("閫夋嫨EXCLE鏂囦欢"),"./",tr("Excel File(*.xls *.xlsx)"));
+        filePath = QFileDialog::getOpenFileName(this,tr("选择EXCLE文件"),"./",tr("Excel File(*.xls *.xlsx)"));
         if(!filePath.isEmpty())
         {
             ui->lineEdit->setText(filePath);
-            ui->statusbar->showMessage("姝ｅ湪淇濆瓨鏁版嵁");
+            ui->statusbar->showMessage("正在保存数据");
             std::thread t{[this]{
                     Excel = new excel(filePath);
                     Excel->Write(Log.log_out());
                     Excel->save();
-                    qDebug() << "鏁版嵁淇濆瓨鎴愬姛";
-                    ui->statusbar->showMessage("鏁版嵁淇濆瓨鎴愬姛");
+                    qDebug() << "数据保存成功";
+                    ui->statusbar->showMessage("数据保存成功");
             }};
             t.detach();
         }
         else
         {
-            qDebug() << "璇锋纭€夋嫨鏂囦欢澶�";
-            ui->statusbar->showMessage("璇锋纭€夋嫨鏂囦欢澶�");
+            qDebug() << "请正确选择文件夹";
+            ui->statusbar->showMessage("请正确选择文件夹");
         }
 
     }
     else
     {
-        ui->statusbar->showMessage("姝ｅ湪淇濆瓨鏁版嵁");
+        ui->statusbar->showMessage("正在保存数据");
         std::thread t{[this]{
             Excel->Write(Log.log_out());
             Excel->save();
-            qDebug() << "鏁版嵁淇濆瓨鎴愬姛";
-            ui->statusbar->showMessage("鏁版嵁淇濆瓨鎴愬姛");
+            qDebug() << "数据保存成功";
+            ui->statusbar->showMessage("数据保存成功");
         }};
         t.detach();
     }
@@ -122,5 +122,5 @@ void MainWindow::saveLog()
 
 void MainWindow::importLog()
 {
-    qDebug() << "鏁版嵁瀵煎叆鎴愬姛";
+    qDebug() << "数据导入成功";
 }
