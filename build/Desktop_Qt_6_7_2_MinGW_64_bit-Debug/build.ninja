@@ -105,9 +105,25 @@ build CMakeFiles/park2.dir/park.cpp.obj: CXX_COMPILER__park2_unscanned_Debug D$:
   OBJECT_DIR = CMakeFiles\park2.dir
   OBJECT_FILE_DIR = CMakeFiles\park2.dir
 
-build CMakeFiles/park2.dir/parkingtime.cpp.obj: CXX_COMPILER__park2_unscanned_Debug D$:/code/application/QT/park2/parkingtime.cpp || cmake_object_order_depends_target_park2
+build CMakeFiles/park2.dir/carParking.cpp.obj: CXX_COMPILER__park2_unscanned_Debug D$:/code/application/QT/park2/carParking.cpp || cmake_object_order_depends_target_park2
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_AXCONTAINER_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\park2.dir\parkingtime.cpp.obj.d
+  DEP_FILE = CMakeFiles\park2.dir\carParking.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -ID:/code/application/QT/park2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/park2_autogen/include -isystem D:/application/QT/6.7.2/mingw_64/include/QtCore -isystem D:/application/QT/6.7.2/mingw_64/include -isystem D:/application/QT/6.7.2/mingw_64/mkspecs/win32-g++ -isystem D:/application/QT/6.7.2/mingw_64/include/QtWidgets -isystem D:/application/QT/6.7.2/mingw_64/include/QtGui -isystem D:/application/QT/6.7.2/mingw_64/include/QtAxContainer
+  OBJECT_DIR = CMakeFiles\park2.dir
+  OBJECT_FILE_DIR = CMakeFiles\park2.dir
+
+build CMakeFiles/park2.dir/my_stack.cpp.obj: CXX_COMPILER__park2_unscanned_Debug D$:/code/application/QT/park2/my_stack.cpp || cmake_object_order_depends_target_park2
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_AXCONTAINER_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\park2.dir\my_stack.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -ID:/code/application/QT/park2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/park2_autogen/include -isystem D:/application/QT/6.7.2/mingw_64/include/QtCore -isystem D:/application/QT/6.7.2/mingw_64/include -isystem D:/application/QT/6.7.2/mingw_64/mkspecs/win32-g++ -isystem D:/application/QT/6.7.2/mingw_64/include/QtWidgets -isystem D:/application/QT/6.7.2/mingw_64/include/QtGui -isystem D:/application/QT/6.7.2/mingw_64/include/QtAxContainer
+  OBJECT_DIR = CMakeFiles\park2.dir
+  OBJECT_FILE_DIR = CMakeFiles\park2.dir
+
+build CMakeFiles/park2.dir/my_queue.cpp.obj: CXX_COMPILER__park2_unscanned_Debug D$:/code/application/QT/park2/my_queue.cpp || cmake_object_order_depends_target_park2
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_AXCONTAINER_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\park2.dir\my_queue.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -ID:/code/application/QT/park2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/park2_autogen/include -isystem D:/application/QT/6.7.2/mingw_64/include/QtCore -isystem D:/application/QT/6.7.2/mingw_64/include -isystem D:/application/QT/6.7.2/mingw_64/mkspecs/win32-g++ -isystem D:/application/QT/6.7.2/mingw_64/include/QtWidgets -isystem D:/application/QT/6.7.2/mingw_64/include/QtGui -isystem D:/application/QT/6.7.2/mingw_64/include/QtAxContainer
   OBJECT_DIR = CMakeFiles\park2.dir
@@ -121,7 +137,7 @@ build CMakeFiles/park2.dir/parkingtime.cpp.obj: CXX_COMPILER__park2_unscanned_De
 #############################################
 # Link the executable park2.exe
 
-build park2.exe: CXX_EXECUTABLE_LINKER__park2_Debug CMakeFiles/park2.dir/park2_autogen/mocs_compilation.cpp.obj CMakeFiles/park2.dir/main.cpp.obj CMakeFiles/park2.dir/mainwindow.cpp.obj CMakeFiles/park2.dir/car.cpp.obj CMakeFiles/park2.dir/excel.cpp.obj CMakeFiles/park2.dir/log.cpp.obj CMakeFiles/park2.dir/park.cpp.obj CMakeFiles/park2.dir/parkingtime.cpp.obj | D$:/application/QT/6.7.2/mingw_64/lib/libQt6AxContainer.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6AxBase.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6Widgets.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6Gui.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6Core.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6EntryPoint.a || park2_autogen park2_autogen_timestamp_deps
+build park2.exe: CXX_EXECUTABLE_LINKER__park2_Debug CMakeFiles/park2.dir/park2_autogen/mocs_compilation.cpp.obj CMakeFiles/park2.dir/main.cpp.obj CMakeFiles/park2.dir/mainwindow.cpp.obj CMakeFiles/park2.dir/car.cpp.obj CMakeFiles/park2.dir/excel.cpp.obj CMakeFiles/park2.dir/log.cpp.obj CMakeFiles/park2.dir/park.cpp.obj CMakeFiles/park2.dir/carParking.cpp.obj CMakeFiles/park2.dir/my_stack.cpp.obj CMakeFiles/park2.dir/my_queue.cpp.obj | D$:/application/QT/6.7.2/mingw_64/lib/libQt6AxContainer.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6AxBase.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6Widgets.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6Gui.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6Core.a D$:/application/QT/6.7.2/mingw_64/lib/libQt6EntryPoint.a || park2_autogen park2_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = D:/application/QT/6.7.2/mingw_64/lib/libQt6AxContainer.a  D:/application/QT/6.7.2/mingw_64/lib/libQt6AxBase.a  -ladvapi32  -lgdi32  -lole32  -loleaut32  -luser32  -luuid  D:/application/QT/6.7.2/mingw_64/lib/libQt6Widgets.a  D:/application/QT/6.7.2/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  D:/application/QT/6.7.2/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  D:/application/QT/6.7.2/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

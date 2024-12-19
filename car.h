@@ -2,7 +2,6 @@
 #define CAR_H
 
 #include<QString>
-#include<QTime>
 
 const QString setStatusTip[34] = {
     "京", "津", "冀", "晋", "蒙", "辽", "吉", "黑",
@@ -27,8 +26,6 @@ class Car
 private:
     carPlace _place;
     QString _plate_num;
-    QTime _start;
-    QTime _end;
 public:
     Car(carPlace place, QString plate_num); // 指定车牌号
     Car();        // 无指定，随机生成
@@ -42,8 +39,6 @@ public:
         return _plate_num;
     }
     QString toString();
-    void parkIn();
-    void parkOut();
 };
 
 #endif // CAR_H

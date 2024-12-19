@@ -1,6 +1,7 @@
 #include "car.h"
 #include "QRandomGenerator"
 #include <QDebug>
+#include <QTimeZone>
 
 Car::Car(carPlace place, QString plate_num)
     :   _place(place)
@@ -32,12 +33,3 @@ QString Car::toString()
     return QString(setStatusTip[(int)_place]+_plate_num);
 }
 
-void Car::parkIn()
-{
-    _start = _start.currentTime();
-}
-
-void Car::parkOut()
-{
-    _end = _end.currentTime();
-}

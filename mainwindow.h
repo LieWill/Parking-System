@@ -9,6 +9,7 @@
 #include "log.h"
 #include "excel.h"
 #include <QPropertyAnimation>
+#include "park.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -46,5 +47,15 @@ private:
     class log Log;
     excel *Excel = nullptr;
     bool exit = false;
+    park MyPark;
+    Car carBuffer;
+    QPushButton *car_park[10];
+    QPushButton *car_queue[10];
+    QPushButton *road_way[10];
+    void connectUI();
+    void parkIn();
+    void parkOut();
+    void showPark();
+    void showQueue();
 };
 #endif // MAINWINDOW_H

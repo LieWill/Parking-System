@@ -355,6 +355,12 @@
 			null
 		],
 		[
+			"D:/code/application/QT/park2/carParking.h",
+			"MU",
+			"EWIEGA46WW/moc_carParking.cpp",
+			null
+		],
+		[
 			"D:/code/application/QT/park2/excel.h",
 			"MU",
 			"EWIEGA46WW/moc_excel.cpp",
@@ -373,15 +379,21 @@
 			null
 		],
 		[
-			"D:/code/application/QT/park2/park.h",
+			"D:/code/application/QT/park2/my_queue.hpp",
 			"MU",
-			"EWIEGA46WW/moc_park.cpp",
+			"EWIEGA46WW/moc_my_queue.cpp",
 			null
 		],
 		[
-			"D:/code/application/QT/park2/parkingtime.h",
+			"D:/code/application/QT/park2/my_stack.hpp",
 			"MU",
-			"EWIEGA46WW/moc_parkingtime.cpp",
+			"EWIEGA46WW/moc_my_stack.cpp",
+			null
+		],
+		[
+			"D:/code/application/QT/park2/park.h",
+			"MU",
+			"EWIEGA46WW/moc_park.cpp",
 			null
 		]
 	],
@@ -459,12 +471,14 @@
 	"SOURCES" : 
 	[
 		[ "D:/code/application/QT/park2/car.cpp", "MU", null ],
+		[ "D:/code/application/QT/park2/carParking.cpp", "MU", null ],
 		[ "D:/code/application/QT/park2/excel.cpp", "MU", null ],
 		[ "D:/code/application/QT/park2/log.cpp", "MU", null ],
 		[ "D:/code/application/QT/park2/main.cpp", "MU", null ],
 		[ "D:/code/application/QT/park2/mainwindow.cpp", "MU", null ],
-		[ "D:/code/application/QT/park2/park.cpp", "MU", null ],
-		[ "D:/code/application/QT/park2/parkingtime.cpp", "MU", null ]
+		[ "D:/code/application/QT/park2/my_queue.cpp", "MU", null ],
+		[ "D:/code/application/QT/park2/my_stack.cpp", "MU", null ],
+		[ "D:/code/application/QT/park2/park.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

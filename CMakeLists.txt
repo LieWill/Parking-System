@@ -30,7 +30,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         excel.cpp excel.h
         log.h log.cpp
         park.h park.cpp
-        parkingtime.h parkingtime.cpp
+        carParking.h carParking.cpp
+        my_stack.hpp my_stack.cpp
+        my_queue.hpp my_queue.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET park2 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
