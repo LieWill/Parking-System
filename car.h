@@ -29,14 +29,18 @@ private:
 public:
     Car(carPlace place, QString plate_num); // 指定车牌号
     Car();        // 无指定，随机生成
-    void show();
-    inline carPlace getPlace()
+    void show(); const
+    inline carPlace getPlace() const
     {
         return _place;
     }
-    inline QString getPlate_num()
+    inline QString getPlate_num() const
     {
         return _plate_num;
+    }
+    inline bool operator==(Car other)
+    {
+        return _place == other._place && _plate_num == other._plate_num;
     }
     QString toString();
 };

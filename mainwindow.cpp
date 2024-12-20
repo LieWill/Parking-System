@@ -107,11 +107,7 @@ void MainWindow::saveLog()
             t.detach();
         }
         else
-        {
-            qDebug() << "请正确选择文件夹";
             ui->statusbar->showMessage("请正确选择文件夹");
-        }
-
     }
     else
     {
@@ -119,7 +115,6 @@ void MainWindow::saveLog()
         std::thread t{[this]{
             Excel->Write(Log.log_out());
             Excel->save();
-            qDebug() << "数据保存成功";
             ui->statusbar->showMessage("数据保存成功");
         }};
         t.detach();
@@ -128,7 +123,7 @@ void MainWindow::saveLog()
 
 void MainWindow::importLog()
 {
-    qDebug() << "数据导入成功";
+    ui->log->append("数据导入成功");
 }
 
 void MainWindow::showPark()
@@ -136,7 +131,7 @@ void MainWindow::showPark()
     size_t num = MyPark.parkNums() % 11;
     for(size_t i = 0; i < num; i++)
     {
-        car_park[i]->setText(MyPark.showStack(i).toString());
+        car_park[i]->setText(MyPark.getStack(i).toString());
     }
     for(size_t i = num; i < 10; i++)
     {
@@ -149,7 +144,7 @@ void MainWindow::showQueue()
     size_t num = MyPark.queueNum() % 11;
     for(size_t i = 0; i < num; i++)
     {
-        car_queue[i]->setText(MyPark.showQueue(i).toString());
+        car_queue[i]->setText(MyPark.getQueue(i).toString());
     }
     for(size_t i = num; i < 10; i++)
     {
@@ -180,8 +175,22 @@ void MainWindow::connectUI()
     car_queue[7] = ui->queue_3;
     car_queue[8] = ui->queue_2;
     car_queue[9] = ui->queue_1;
+
+    for(int i = 0; i < 10; i++)
+    {
+        connect(car_park[i], &QPushButton::clicked, this, [=]{
+            ui->comboBox->setCurrentIndex((int)(MyPark.getStack(i).getPlace()));
+            ui->plateNumEdit->setText(MyPark.getStack(i).getPlate_num());
+        });
+        connect(car_queue[i], &QPushButton::clicked, this, [=]{
+            ui->comboBox->setCurrentIndex((int)(MyPark.getQueue(i).getPlace()));
+            ui->plateNumEdit->setText(MyPark.getQueue(i).getPlate_num());
+        });
+    }
 }
 
+static int stackTop = 0;  // TODO 待解决
+static int queueTop = 0;
 void MainWindow::parkIn()
 {
     Car sight((carPlace)ui->comboBox->currentIndex(),\
@@ -192,48 +201,55 @@ void MainWindow::parkIn()
     }
     else
     {
-        static Car here(carPlace::GuangDong,"");
-        if(here.getPlace() != sight.getPlace() || \
-           here.getPlate_num() != sight.getPlate_num())
+        if(!MyPark.find(sight))  //看看这个车在不在停车场
         {
-            Log.log_in(Car((carPlace)ui->comboBox->currentIndex(),\
-                        ui->plateNumEdit->text()));
-            ui->statusbar->showMessage("停车成功");
-            here = sight;
-            state temp = MyPark.in(sight);
-            if(temp == state::OK)
+            Log.log_in(sight);
+            switch(MyPark.in(sight))
             {
+            case state::OK:
+                car_park[stackTop++]->setEnabled(true);
+                ui->log->append(sight.toString() + "成功停入停车场\n");
                 showPark();
-            }
-            else if(temp == state::park_full)
-            {
+                break;
+            case state::park_full:
+                car_queue[queueTop++]->setEnabled(true);
+                ui->log->append(sight.toString() + "驶入等候区\n");
                 showQueue();
+                break;
+            case state::queue_full:
+                ui->statusbar->showMessage("等候区已满，无法停车\n",1000);
+                break;
+            default:
+                break;
             }
         }
         else
-        {
-            ui->statusbar->showMessage("请勿重复停车");
-        }
+            ui->statusbar->showMessage("请勿重复停车",1000);
     }
 }
 
 void MainWindow::parkOut()
 {
-    carParking car;
-    state temp = MyPark.out(car);
-    if(temp == state::OK)
+    carParking car((carPlace)ui->comboBox->currentIndex(),\
+                   ui->plateNumEdit->text());
+    switch(MyPark.out(car))
     {
+    case state::OK:
         showPark();
         showQueue();
-        ui->statusbar->showMessage("成功出车" + car.toString());
-    }
-    else if(temp == state::queue_empty)
-    {
+        ui->log->append("出车成功:" + car.toString() + "\nin:" = car.getInTime().toString() + "\nout" + car.getOutTime().toString() + '\n');
+        break;
+    case state::queue_empty:
         showPark();
-        ui->statusbar->showMessage("成功出车" + car.toString());
-    }
-    else if(temp == state::park_empty)
-    {
-        ui->statusbar->showMessage("停车场已空");
+        ui->log->append("出车成功:" + car.toString() + "\nin:" = car.getInTime().toString() + "\nout" + car.getOutTime().toString() + '\n');
+        break;
+    case state::park_empty:
+        ui->statusbar->showMessage("停车场已空", 1000);
+        break;
+    case state::no_find:
+        ui->statusbar->showMessage("没有找到这辆车哦！", 1000);
+        break;
+    default:
+        break;
     }
 }

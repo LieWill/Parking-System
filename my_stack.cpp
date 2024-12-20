@@ -18,7 +18,7 @@ bool stack<T>::push(T value)
 }
 
 template <typename T>
-std::optional<size_t> stack<T>::find(T value)
+std::optional<size_t> stack<T>::find(T &value) const
 {
     for (size_t i = 0; i < top; i++)
     {

@@ -24,16 +24,17 @@ class park
 public:
     park(size_t size);
     state in(Car &car);
-    state out(Car &car);
-    inline Car &showQueue(size_t index)
+    state out(carParking &outCar);
+    bool find(Car &target) const;
+    inline Car &getQueue(size_t index)
     {
         return car_queue.at(index);
     }
-    inline carParking &showStack(size_t index)
+    inline carParking &getStack(size_t index)
     {
         return car_park.at(index);
     }
-    inline carParking &showRoad(size_t index)
+    inline carParking &getRoad(size_t index)
     {
         return road_way.at(index);
     }

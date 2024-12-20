@@ -112,7 +112,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
+      <y>130</y>
       <width>251</width>
       <height>51</height>
      </rect>
@@ -132,7 +132,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>150</y>
+      <y>70</y>
       <width>251</width>
       <height>51</height>
      </rect>
@@ -165,6 +165,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="park_1">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -181,7 +184,16 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="Line" name="line">
@@ -237,6 +249,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="queue_1">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -343,6 +358,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="park_2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -359,10 +377,22 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="park_3">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -379,10 +409,22 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="park_4">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -399,10 +441,22 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="park_5">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -419,10 +473,22 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="park_6">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -439,10 +505,22 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="park_7">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -459,10 +537,22 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="park_8">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -479,10 +569,22 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="park_9">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -499,10 +601,22 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="park_10">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -519,10 +633,22 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string notr="true"/>
+    </property>
+    <property name="shortcut">
+     <string notr="true"/>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="queue_2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -543,6 +669,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="queue_3">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -563,6 +692,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="queue_4">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -583,6 +715,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="queue_5">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -603,6 +738,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="queue_6">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -623,6 +761,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="queue_7">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -643,6 +784,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="queue_8">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -663,6 +807,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="queue_9">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -683,6 +830,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="queue_10">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -706,7 +856,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>220</y>
+      <y>190</y>
       <width>251</width>
       <height>51</height>
      </rect>
@@ -720,6 +870,43 @@
     </property>
     <property name="text">
      <string>出车</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="log">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>260</y>
+      <width>231</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string notr="true"/>
+    </property>
+    <property name="statusTip">
+     <string notr="true"/>
+    </property>
+    <property name="whatsThis">
+     <string notr="true"/>
+    </property>
+    <property name="accessibleName">
+     <string notr="true"/>
+    </property>
+    <property name="accessibleDescription">
+     <string notr="true"/>
+    </property>
+    <property name="documentTitle">
+     <string notr="true"/>
+    </property>
+    <property name="acceptRichText">
+     <bool>true</bool>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+    </property>
+    <property name="placeholderText">
+     <string notr="true"/>
     </property>
    </widget>
   </widget>

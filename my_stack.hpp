@@ -16,7 +16,7 @@ public:
     ~stack() { delete[] data; }          // 析构函数
     bool push(T value);                  // 入栈
     std::optional<T> pop();              // 出栈
-    std::optional<size_t> find(T value); // 查找
+    std::optional<size_t> find(T &value) const;// 查找
     inline bool isEmpty() const          // 判断是否为空
     {
         return top == 0;                 // 栈空
@@ -29,7 +29,7 @@ public:
     {
         return top;
     }
-    inline T &at(size_t index)
+    inline T &at(size_t index) const
     {
         return data[index % capacity];  // 防止越界访问
     }

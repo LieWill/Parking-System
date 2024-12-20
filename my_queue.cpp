@@ -25,3 +25,14 @@ std::optional<T> queue<T>::pop()
     buf_num--;
     return data[temp];
 }
+
+template<typename T>
+std::optional<size_t> queue<T>::find(T &target) const
+{
+    for(size_t i = 0; i < capacity; i++)
+    {
+        if(target == data[((i % capacity) + front) % capacity])
+            return i;
+    }
+    return std::nullopt;
+}

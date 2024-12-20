@@ -14,13 +14,17 @@ public:
     carParking(carPlace place, QString plate_num);
     void parkIn();
     void parkOut();
-    inline QDateTime getInTime()
+    inline QDateTime getInTime() const
     {
         return _start;
     }
-    inline QDateTime getOutTime()
+    inline QDateTime getOutTime() const
     {
         return _end;
+    }
+    bool operator==(const carParking differ) const
+    {
+        return getPlate_num() == differ.getPlate_num() && getPlace() == differ.getPlace();
     }
     double getCost();
 };
