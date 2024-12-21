@@ -1,6 +1,24 @@
 #include "my_queue.hpp"
 
 
+template<typename T>
+std::optional<T> queue<T>::extract(size_t index)
+{
+    if(index > buf_num)
+        return std::nullopt;
+    T res = at(index);
+    for(int i = index; i < buf_num; i++)
+    {
+        at(i) = at(i + 1);
+    }
+    buf_num--;
+    if(rear == 0)
+        rear = capacity - 1;
+    else
+        rear--;
+    return res;
+}
+
 template <typename T>
 bool queue<T>::push(T value)
 {

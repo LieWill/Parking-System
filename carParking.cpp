@@ -30,7 +30,7 @@ void carParking::parkIn()
 {
     _end.setTime(QTime(24, 0, 0));         // 设置结束时间为当天的24点（无效时间，现实不存在24时）
     _start = QDateTime::currentDateTime(); // 设置开始时间为当前时间
-    //qDebug() << _start;
+    qDebug() << _start;
 }
 
 // 记录车辆离开停车场的时间
@@ -41,7 +41,7 @@ void carParking::parkOut()
     else
         qDebug() << _end; */               // 输出结束时间
     _end = QDateTime::currentDateTime(); // 更新结束时间为当前时间
-    //qDebug() << _end;
+    qDebug() << _end;
 }
 
 // 计算停车费用

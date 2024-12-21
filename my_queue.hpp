@@ -20,6 +20,7 @@ public:
         capacity = cap;
     }
     ~queue() { delete[] data; } // 析构函数
+    std::optional<T> extract(size_t index);
     bool push(T value);         // 入队
     std::optional<T> pop();     // 出队
     std::optional<size_t> find(T &target) const;

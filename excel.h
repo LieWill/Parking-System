@@ -3,6 +3,7 @@
 
 #include <QtAxContainer/QAxObject>
 #include <QFile>
+#include "log.h"
 
 class excel
 {
@@ -20,9 +21,9 @@ class excel
 public:
     excel(QString filename);
     ~excel();
-    bool Write(QVariantList &mList);
+    bool Write(class log data);
     bool Read(QVariantList &mList);
-    bool setTitle(QString title, int width);
+    bool setFormat();
     bool save();
 };
 

@@ -7,7 +7,6 @@
 #include "QFileDialog"
 #include <thread>
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -23,8 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
     importAction = new QAction(ui->menuFile);
 
     saveAction->setShortcut(QKeySequence("Ctrl+S"));
-    saveAction->setStatusTip("保存数据");
-    saveAction->setText("保存数据");
+    saveAction->setStatusTip("导出EXCEL数据");
+    saveAction->setText("导出EXCEL数据");
 
     importAction->setShortcut(QKeySequence("Ctrl+L"));
     importAction->setStatusTip("导入数据");
@@ -92,16 +91,17 @@ void MainWindow::saveLog()
 {
     if(filePath.isEmpty())
     {
-        filePath = QFileDialog::getOpenFileName(this,tr("选择EXCLE文件"),"./",tr("Excel File(*.xls *.xlsx)"));
+        filePath = QFileDialog::getSaveFileName(this,tr("EXCLE文件名"),"./",tr("Excel File(*.xlsx *.xls )"));
         if(!filePath.isEmpty())
         {
             ui->filePathEditor->setText(filePath);
             ui->statusbar->showMessage("正在保存数据");
             std::thread t{[this]{
                     Excel = new excel(filePath);
-                    Excel->Write(Log.log_out());
+                    Log.setParkStates(MyPark);
+                    Excel->setFormat();
+                    Excel->Write(Log);
                     Excel->save();
-                    qDebug() << "数据保存成功";
                     ui->statusbar->showMessage("数据保存成功");
             }};
             t.detach();
@@ -113,7 +113,8 @@ void MainWindow::saveLog()
     {
         ui->statusbar->showMessage("正在保存数据");
         std::thread t{[this]{
-            Excel->Write(Log.log_out());
+            Log.setParkStates(MyPark);
+            Excel->Write(Log);
             Excel->save();
             ui->statusbar->showMessage("数据保存成功");
         }};
@@ -186,6 +187,8 @@ void MainWindow::connectUI()
             ui->comboBox->setCurrentIndex((int)(MyPark.getQueue(i).getPlace()));
             ui->plateNumEdit->setText(MyPark.getQueue(i).getPlate_num());
         });
+        car_park[i]->hide();
+        car_queue[i]->hide();
     }
 }
 
@@ -203,15 +206,16 @@ void MainWindow::parkIn()
     {
         if(!MyPark.find(sight))  //看看这个车在不在停车场
         {
-            Log.log_in(sight);
             switch(MyPark.in(sight))
             {
             case state::OK:
+                car_park[stackTop]->show();
                 car_park[stackTop++]->setEnabled(true);
                 ui->log->append(sight.toString() + "成功停入停车场\n");
                 showPark();
                 break;
             case state::park_full:
+                car_queue[queueTop]->show();
                 car_queue[queueTop++]->setEnabled(true);
                 ui->log->append(sight.toString() + "驶入等候区\n");
                 showQueue();
@@ -235,13 +239,17 @@ void MainWindow::parkOut()
     switch(MyPark.out(car))
     {
     case state::OK:
+        car_queue[--queueTop]->hide();
         showPark();
         showQueue();
         ui->log->append("出车成功:" + car.toString() + "\nin:" = car.getInTime().toString() + "\nout" + car.getOutTime().toString() + '\n');
+        Log.record(car);
         break;
     case state::queue_empty:
+        car_park[--stackTop]->hide();
         showPark();
         ui->log->append("出车成功:" + car.toString() + "\nin:" = car.getInTime().toString() + "\nout" + car.getOutTime().toString() + '\n');
+        Log.record(car);
         break;
     case state::park_empty:
         ui->statusbar->showMessage("停车场已空", 1000);

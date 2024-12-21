@@ -28,38 +28,38 @@ state park::in(Car &car)
 
 state park::out(carParking &outCar)
 {
-    // state res = state::OK;
-    // if(car_park.isEmpty())
-    //     return state::park_empty;
-    // else
-    // {
-    //     auto index = car_park.find(outCar);
-    //     if(!index.has_value())
-    //         return state::no_find;
-    //     outCar = car_park.pop().value();
-    //     if(!car_queue.isEmpty())
-    //         car_park.push(car_queue.pop().value());
-    //     else
-    //         res = state::queue_empty;
-    // }
     if (car_park.isEmpty()) // 判断停车场为空
-        return state::park_empty;
-    auto state = car_park.find(outCar); // 查找车辆
-    if (state == std::nullopt)       // 判断车辆不存在
-        return state::no_find;
-    for (size_t i = car_park.Top() - 1; i > state.value(); i--)
-        road_way.push(car_park.pop().value()); // 将车辆后边的车辆移到便道
-    outCar = car_park.pop().value();
-    for (size_t i = car_park.Top(); !road_way.isEmpty(); i--)
-        car_park.push(road_way.pop().value()); // 将便道的车辆移回停车场
-    outCar.parkOut();
-    if (!car_queue.isEmpty()) // 判断等待区是否有车辆
+        return state::park_empty; // 停车场空
+    auto index = car_park.find(outCar);
+    if (index.has_value())       // 判断车辆存在
     {
-        auto temp = carParking(car_queue.pop().value());
-        temp.parkIn(); // 记录进入时间
-        car_park.push(temp);
+        for (size_t i = car_park.Top() - 1; i > index.value(); i--)
+            road_way.push(car_park.pop().value()); // 将车辆后边的车辆移到便道
+        outCar = car_park.pop().value();
+        for (size_t i = car_park.Top(); !road_way.isEmpty(); i--)
+            car_park.push(road_way.pop().value()); // 将便道的车辆移回停车场
+        outCar.parkOut();
+        if (!car_queue.isEmpty()) // 判断等待区是否有车辆
+        {
+            auto temp = carParking(car_queue.pop().value());
+            temp.parkIn(); // 记录进入时间
+            car_park.push(temp);
+            return state::OK;
+        }
+        else
+            return state::queue_empty;
     }
-    return state::OK;
+    else if((index = car_queue.find(outCar)).has_value())
+    {
+        auto car = car_queue.extract(index.value());
+        if(car.has_value())
+            outCar = carParking(car.value());
+        else
+            return state::no_find; // 没找着
+        return state::OK;
+    }
+    else
+        return state::no_find;
 }
 
 bool park::find(Car &target) const

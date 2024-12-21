@@ -2,17 +2,19 @@
 #define LOG_H
 
 #include<QVariant>
-// #include<vector>
-#include"car.h"
+#include"park.h"
 
 class log
 {
 private:
-    QVariantList _data;
+    QVariantList _parkStates; // 停车场状态
+    QVariantList _records;    // 记录结果
 public:
     log();
-    void log_in(Car data);
-    QVariantList &log_out();
+    void record(carParking Car);
+    void setParkStates(park &state);
+    QVariantList &getRecords();
+    QVariantList &getParkStates();
 };
 
 #endif // LOG_H

@@ -2,14 +2,41 @@
 
 log::log() {}
 
-void log::log_in(Car data)
+void log::record(carParking Car)
 {
     QVariantList tempVarRow;
-    tempVarRow << data.toString();
-    _data << QVariant(tempVarRow);
+    tempVarRow << Car.toString() << Car.getInTime().toString() << Car.getOutTime().toString() << Car.getCost();
+    _records << QVariant(tempVarRow);
 }
 
-QVariantList &log::log_out()
+void log::setParkStates(park &state)
 {
-    return _data;
+    QVariantList tempVarRow;
+    for(size_t i = 0; i < state.parkNums(); i++)
+    {
+        tempVarRow << state.getStack(i).toString();
+    }
+    _parkStates << QVariant(tempVarRow);
+    tempVarRow.clear();
+    for(size_t i =0; i < state.queueNum(); i++)
+    {
+        tempVarRow << state.getQueue(i).toString();
+    }
+    _parkStates << QVariant(tempVarRow);
+}
+
+// void log::park_log_in(carParking data)
+// {
+//     // _ParkState << ++park_num <<data.toString();
+//     // length++;
+// }
+
+QVariantList &log::getRecords()
+{
+    return _records;
+}
+
+QVariantList &log::getParkStates()
+{
+    return _parkStates;
 }

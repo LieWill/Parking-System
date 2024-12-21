@@ -6,15 +6,26 @@
 #include "my_queue.cpp"
 #include "car.h"
 
-enum class state
+enum class state : unsigned char
 {
-    OK,          // 操作成功
-    park_empty,  // 停车场为空
-    park_full,   // 停车场已满
+    OK          ,   // 操作成功
+    EOROR       ,   // 操作失败
+    park_empty  ,   // 停车场为空
+    park_full   ,   // 停车场已满
+    queue_empty ,   // 队列为空
+    queue_full  ,   // 队列已满
     no_find,     // 车辆不存在
-    queue_empty, // 队列为空
-    queue_full,  // 队列已满
 };
+
+// inline bool operator==(state x, state y)
+// {
+//     return (bool)(!((unsigned int)x ^ (unsigned int)y));
+// }
+
+// inline state operator|(state x, state y)
+// {
+//     return (state)((unsigned int)x | (unsigned int)y);
+// }
 
 class park
 {

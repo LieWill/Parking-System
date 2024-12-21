@@ -67,10 +67,14 @@ CMakeLists.txt.user*
 # Python byte code
 *.pyc
 
-# Binaries
+# 忽略二进制文件
 # --------
 *.dll
 *.exe
 
-#vscode generated files
+# 忽略vscode生成的配置文件
 .vscode/settings.json
+
+# 忽略EXCEL文件
+*.xls
+*.xlsx
