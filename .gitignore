@@ -60,11 +60,11 @@ CMakeLists.txt.user*
 *.vcxproj
 *vcxproj.*
 
-# MinGW generated files
+# 忽略MinGW生成文件
 *.Debug
 *.Release
 
-# Python byte code
+# 忽略python生成的二进制文件
 *.pyc
 
 # 忽略二进制文件
