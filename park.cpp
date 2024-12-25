@@ -6,7 +6,13 @@ park::park(size_t size)
     ,   road_way(10)
 {}
 
-state park::in(Car &car)
+void park::setPark(stack<carParking> park, queue<carParking> queue)
+{
+    car_park = park;
+    //car_queue = queue;
+}
+
+state park::in(const Car &car)
 {
     state res = state::OK;
     if(car_park.isFull())
@@ -15,7 +21,11 @@ state park::in(Car &car)
         if(car_queue.isFull())
             res = state::queue_full;
         else
-            car_queue.push(car);
+        {
+            auto temp = carParking(car);
+            temp.parkIn();
+            car_queue.push(temp);
+        }
     }
     else
     {
@@ -67,7 +77,7 @@ bool park::find(Car &target) const
     auto temp = carParking(target);
     if(car_park.find(temp).has_value())
         return true;
-    return car_queue.find(target).has_value();
+    return car_queue.find(temp).has_value();
 }
 
 

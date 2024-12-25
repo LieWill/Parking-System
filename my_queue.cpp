@@ -2,6 +2,17 @@
 
 
 template<typename T>
+queue<T>::queue(const queue &copy)
+    :   data(new T[copy.capacity])
+    ,   rear(copy.buf_num)
+    ,   buf_num(copy.buf_num)
+    ,   capacity(copy.capacity)
+{
+    for(int i = 0; i < buf_num; i++)
+        data[i] = copy.data[i + copy.front];
+}
+
+template<typename T>
 std::optional<T> queue<T>::extract(size_t index)
 {
     if(index > buf_num)

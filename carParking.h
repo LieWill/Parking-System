@@ -12,6 +12,7 @@ public:
     carParking();
     carParking(Car car);
     carParking(carPlace place, QString plate_num);
+    carParking(const QString plate);
     void parkIn();
     void parkOut();
     inline QTime getInTime() const
@@ -29,6 +30,14 @@ public:
     inline QDate getOutDate() const
     {
         return _end.date();
+    }
+    inline void setInTime(const QTime &inTime)
+    {
+        _start.setTime(inTime);
+    }
+    inline void setInDate(const QDate &inDate)
+    {
+        _start.setDate(inDate);
     }
     bool operator==(const carParking differ) const
     {

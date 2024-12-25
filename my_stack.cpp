@@ -1,10 +1,23 @@
 #include "my_stack.hpp"
 
+#include "QDebug"
+
 template<typename T>
 stack<T>::stack(size_t cap)
 {
     data = new T[cap];
     capacity = cap;
+}
+
+template<typename T>
+stack<T>::stack(const stack &copy)
+    :   data(new T[copy.capacity])
+    ,   top(copy.top)
+    ,   capacity(copy.capacity)
+{
+    qDebug() << "执行拷贝函数，拷贝容量为" << copy.capacity << "所有数量为" << copy.top;
+    for(int i = 0; i < top; i++)
+        data[i] = copy.data[i];
 }
 
 template <typename T>

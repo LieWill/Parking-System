@@ -13,6 +13,7 @@ private:
 
 public:
     stack(size_t cap = 10);              // 构造函数
+    stack(const stack &copy);            // 实现深拷贝
     ~stack() { delete[] data; }          // 析构函数
     bool push(T value);                  // 入栈
     std::optional<T> pop();              // 出栈

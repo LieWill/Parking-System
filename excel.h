@@ -19,12 +19,18 @@ class excel
     int _columnCount = 0;
 
 public:
-    excel(QString filename);
+    excel(QString filename, bool ADD);
     ~excel();
     bool Write(class log data);
-    bool Read(QVariantList &mList);
+    bool Read(class log &data, park &Park);
     bool setFormat();
     bool save();
+
+private:
+    void setBlock(QString title, QString pos, QColor color, int xSize = 1, int ySize = 1, int wordSize = 0);
+    void setColor(QString pos, QColor color, int xSize = 1, int ySize = 1);
+    bool multipWrite(QString pos, const QVariantList &var);
+    bool multipRead(QString pos, QVariantList &res, int xSize = 1, int ySize = 1);
 };
 
 #endif // EXCEL_H

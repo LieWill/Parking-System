@@ -60,9 +60,9 @@ MainWindow::MainWindow(QWidget *parent)
     // // 6.设置动画的播放周期
     // a1->setLoopCount(1);
     // a1->start();
-    extern const QString setStatusTip[34];
+    extern const char setStatusTip[34][4];
     for(int i = 0; i < 34; i++)
-        ui->comboBox->addItem(' ' +setStatusTip[i]);
+        ui->comboBox->addItem(QString(" ") + setStatusTip[i]);
 }
 
 MainWindow::~MainWindow()
@@ -97,8 +97,8 @@ void MainWindow::saveLog()
             ui->filePathEditor->setText(filePath);
             ui->statusbar->showMessage("正在保存数据");
             std::thread t{[this]{
-                    Excel = new excel(filePath);
-                    Log.setParkStates(MyPark);
+                    Excel = new excel(filePath, true);
+                    Log.logParkStates(MyPark);
                     Excel->setFormat();
                     Excel->Write(Log);
                     Excel->save();
@@ -107,13 +107,13 @@ void MainWindow::saveLog()
             t.detach();
         }
         else
-            ui->statusbar->showMessage("请正确选择文件夹");
+            ui->statusbar->showMessage("请正确选择文件");
     }
     else
     {
         ui->statusbar->showMessage("正在保存数据");
         std::thread t{[this]{
-            Log.setParkStates(MyPark);
+            Log.logParkStates(MyPark);
             Excel->Write(Log);
             Excel->save();
             ui->statusbar->showMessage("数据保存成功");
@@ -124,6 +124,26 @@ void MainWindow::saveLog()
 
 void MainWindow::importLog()
 {
+    filePath = QFileDialog::getOpenFileName(this,tr("EXCLE文件名"),"./",tr("Excel File(*.xlsx *.xls )"));
+    if(!filePath.isEmpty())
+    {
+        ui->filePathEditor->setText(filePath);
+        ui->statusbar->showMessage("正在导入数据");
+        std::thread t{[this]{
+            Excel = new excel(filePath, false);
+            Excel->Read(Log, MyPark);
+            // Log.setParkStates(MyPark);
+            // Excel->setFormat();
+            // Excel->Write(Log);
+            // Excel->save();
+            ui->statusbar->showMessage("数据导入成功");
+            showPark();
+            showQueue();
+        }};
+        t.detach();
+    }
+    else
+        ui->statusbar->showMessage("请正确选择文件");
     ui->log->append("数据导入成功");
 }
 
@@ -133,10 +153,14 @@ void MainWindow::showPark()
     for(size_t i = 0; i < num; i++)
     {
         car_park[i]->setText(MyPark.getStack(i).toString());
+        car_park[i]->show();
+        car_park[i]->setEnabled(true);
     }
     for(size_t i = num; i < 10; i++)
     {
         car_park[i]->setText("");
+        car_park[i]->hide();
+        car_park[i]->setEnabled(false);
     }
 }
 
@@ -146,10 +170,14 @@ void MainWindow::showQueue()
     for(size_t i = 0; i < num; i++)
     {
         car_queue[i]->setText(MyPark.getQueue(i).toString());
+        car_queue[i]->show();
+        car_queue[i]->setEnabled(true);
     }
     for(size_t i = num; i < 10; i++)
     {
         car_queue[i]->setText("");
+        car_queue[i]->hide();
+        car_queue[i]->setEnabled(false);
     }
 }
 
@@ -192,8 +220,8 @@ void MainWindow::connectUI()
     }
 }
 
-static int stackTop = 0;  // TODO 待解决
-static int queueTop = 0;
+// static int stackTop = 0;  // TODO 待解决
+// static int queueTop = 0;
 void MainWindow::parkIn()
 {
     Car sight((carPlace)ui->comboBox->currentIndex(),\
@@ -209,19 +237,15 @@ void MainWindow::parkIn()
             switch(MyPark.in(sight))
             {
             case state::OK:
-                car_park[stackTop]->show();
-                car_park[stackTop++]->setEnabled(true);
                 ui->log->append(sight.toString() + "成功停入停车场\n");
                 showPark();
                 break;
             case state::park_full:
-                car_queue[queueTop]->show();
-                car_queue[queueTop++]->setEnabled(true);
                 ui->log->append(sight.toString() + "驶入等候区\n");
                 showQueue();
                 break;
             case state::queue_full:
-                ui->statusbar->showMessage("等候区已满，无法停车\n",1000);
+                ui->statusbar->showMessage("等候区已满，无法停车\n", 1000);
                 break;
             default:
                 break;
@@ -239,14 +263,14 @@ void MainWindow::parkOut()
     switch(MyPark.out(car))
     {
     case state::OK:
-        car_queue[--queueTop]->hide();
+        // car_queue[--queueTop]->hide();
         showPark();
         showQueue();
         ui->log->append("出车成功:" + car.toString() + "\nin:" = car.getInTime().toString() + "\nout" + car.getOutTime().toString() + '\n');
         Log.record(car);
         break;
     case state::queue_empty:
-        car_park[--stackTop]->hide();
+        // car_park[--stackTop]->hide();
         showPark();
         ui->log->append("出车成功:" + car.toString() + "\nin:" = car.getInTime().toString() + "\nout" + car.getOutTime().toString() + '\n');
         Log.record(car);

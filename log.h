@@ -12,9 +12,11 @@ private:
 public:
     log();
     void record(carParking Car);
-    void setParkStates(park &state);
+    void logParkStates(park &state);
     QVariantList &getRecords();
     QVariantList &getParkStates();
+    bool setRecords(const QVariantList &record);
+    const park setParkStates(const QVariantList &state);
 };
 
 #endif // LOG_H

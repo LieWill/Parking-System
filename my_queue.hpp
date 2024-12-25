@@ -19,6 +19,7 @@ public:
         data = new T[cap];
         capacity = cap;
     }
+    queue(const queue &copy);   // 实现深拷贝
     ~queue() { delete[] data; } // 析构函数
     std::optional<T> extract(size_t index);
     bool push(T value);         // 入队

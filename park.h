@@ -31,13 +31,14 @@ class park
 {
     stack<carParking> car_park;
     stack<carParking> road_way;
-    queue<Car> car_queue;
+    queue<carParking> car_queue;
 public:
     park(size_t size);
-    state in(Car &car);
+    void setPark(stack<carParking> park, queue<carParking> queue);
+    state in(const Car &car);
     state out(carParking &outCar);
     bool find(Car &target) const;
-    inline Car &getQueue(size_t index)
+    inline carParking &getQueue(size_t index)
     {
         return car_queue.at(index);
     }
