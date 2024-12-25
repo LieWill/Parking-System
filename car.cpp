@@ -13,26 +13,7 @@ Car::Car(carPlace place, QString plate_num)
 Car::Car(const QString plate)
     :   _plate_num(plate)
 {
-    // QByteArray *ba = new QByteArray(plate.toLatin1());
-    // char *temp = ba->data();
-    // int index = 0;
-    //char a = "粤123456";
-    // for(; index < 34; index++)
-    // {
-    //     bool same = true;
-    //     for(int j = 0; j < 4; j++)
-    //     {
-    //         if(temp[index] != setStatusTip[index][j])
-    //         {
-    //             same = false;
-    //             break;
-    //         }
-    //     }
-    //     if(same)
-    //         break;
-    // }
     _place = (carPlace)1;//index;
-    //_plate_num = QString("hello");//new char[10];//"12345";//&temp[3]; // 字符串第四个后的字符
 }
 
 // 默认构造函数，随机生成车辆位置和车牌号

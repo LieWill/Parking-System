@@ -31,13 +31,6 @@ excel::excel(QString filename, bool ADD)
         return;
     }
     QFileInfo info(filename);
-    // if(info.isFile())
-    // {
-    //     qDebug() << "文件存在";
-    //     _workbooks->dynamicCall("Open(const QString&)", filename); //打开打开已存在的工作簿
-    // }
-    // else
-    // {
     if(ADD)
     {
         _workbooks->dynamicCall("Add");
