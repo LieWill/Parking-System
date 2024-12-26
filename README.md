@@ -12,6 +12,7 @@
 ## 文件结构
 ```
 park2/
+├── mainwindows.ui          # 界面的布局
 ├── car.cpp                 # 车辆类实现文件
 ├── car.h                   # 车辆类头文件
 ├── carParking.cpp          # 停车场管理类实现文件
