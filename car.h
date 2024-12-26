@@ -3,11 +3,12 @@
 
 #include<QString>
 
-const char setStatusTip[34][4] = {
+const QString setStatusTip[35] = {
     "京", "津", "冀", "晋", "蒙", "辽", "吉", "黑",
     "沪", "苏", "浙", "皖", "闽", "赣", "鲁", "豫",
     "鄂", "湘", "粤", "桂", "琼", "渝", "川", "贵",
-    "云", "藏", "陕", "甘", "青", "宁", "新", "港", "澳", "台"
+    "云", "藏", "陕", "甘", "青", "宁", "新", "港",
+    "澳", "台", "无"
 };
 
 enum class carPlace
@@ -28,7 +29,7 @@ private:
     QString _plate_num;
 public:
     Car(carPlace place, QString plate_num); // 指定车牌号
-    Car(const QString plate);
+    Car(const QString &plate);
     Car();        // 无指定，随机生成
     void show(); const
     inline carPlace getPlace() const

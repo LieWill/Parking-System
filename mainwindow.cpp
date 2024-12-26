@@ -12,11 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , MyPark(10)
 {
-    new QAxObject("Word.Application");
     ui->setupUi(this);
-    connectUI();
-    connect(this, SIGNAL(signal1()),this,SLOT(slot()));
-    signal1();
+    connectUI(); // 连接UI
 
     saveAction = new QAction(ui->menuFile);
     importAction = new QAction(ui->menuFile);
@@ -36,8 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->filePathEditor->setValidator(new QRegularExpressionValidator(QRegularExpression \
     ("^(?:(?:[a-zA-Z]:|\\.{1,2})?[\\\\/](?:[^\\\\?/*|<>:\"]+[\\\\/])*)(?:(?:[^\\\\?/*|<>:\"]+?)(?:\\.[^.\\\\?/*|<>:\"]+)?)?$")));
+    // 正则表达式，匹配文件路径
     ui->plateNumEdit->setValidator(new QRegularExpressionValidator(QRegularExpression("^(?![0-9]+$)(?![A-Z]+$)[0-9A-Z]{6,7}$")));
-
+    // 正则表达式，匹配车牌号
     connect(saveAction, &QAction::triggered, this, &MainWindow::saveLog);
     connect(importAction, &QAction::triggered, this, &MainWindow::importLog);
     connect(ui->randomButton,&QPushButton::clicked,this,[this](){
@@ -60,9 +58,9 @@ MainWindow::MainWindow(QWidget *parent)
     // // 6.设置动画的播放周期
     // a1->setLoopCount(1);
     // a1->start();
-    extern const char setStatusTip[34][4];
+    extern const QString setStatusTip[35];
     for(int i = 0; i < 34; i++)
-        ui->comboBox->addItem(QString(" ") + setStatusTip[i]);
+        ui->comboBox->addItem(" " + setStatusTip[i]);
 }
 
 MainWindow::~MainWindow()
@@ -70,21 +68,14 @@ MainWindow::~MainWindow()
     delete ui;
     delete saveAction;
     delete importAction;
+    // 启动的EXCEL进程需要关闭
+    // 只有副线程的id可以与EXCEL进程通讯
+    // 所以要调用副线程来析构EXCEL对象，关闭进程
     std::thread t{[this]{
         if(Excel != nullptr)
             delete Excel;
     }};
-    t.join();
-}
-
-void MainWindow::slot()
-{
-    qDebug() << "你好";
-}
-
-void MainWindow::come(QString& str)
-{
-    qDebug()<<str;
+    t.join(); // 采用阻塞方式调用副线程，防止主线程在副线程结束前结束
 }
 
 void MainWindow::saveLog()
@@ -129,18 +120,14 @@ void MainWindow::importLog()
     {
         ui->filePathEditor->setText(filePath);
         ui->statusbar->showMessage("正在导入数据");
-        std::thread t{[this]{
+        /*std::thread t{[this]{
             Excel = new excel(filePath, false);
             Excel->Read(Log, MyPark);
-            // Log.setParkStates(MyPark);
-            // Excel->setFormat();
-            // Excel->Write(Log);
-            // Excel->save();
             ui->statusbar->showMessage("数据导入成功");
-            showPark();
+            // showPark();
             showQueue();
-        }};
-        t.detach();
+        }};*/
+        //t.detach(); // 采用分离方式调用副线程，防止主线程阻塞
     }
     else
         ui->statusbar->showMessage("请正确选择文件");
@@ -150,6 +137,7 @@ void MainWindow::importLog()
 void MainWindow::showPark()
 {
     size_t num = MyPark.parkNums() % 11;
+    qDebug() << num;
     for(size_t i = 0; i < num; i++)
     {
         car_park[i]->setText(MyPark.getStack(i).toString());
@@ -167,6 +155,7 @@ void MainWindow::showPark()
 void MainWindow::showQueue()
 {
     size_t num = MyPark.queueNum() % 11;
+    qDebug() << num;
     for(size_t i = 0; i < num; i++)
     {
         car_queue[i]->setText(MyPark.getQueue(i).toString());
@@ -210,10 +199,12 @@ void MainWindow::connectUI()
         connect(car_park[i], &QPushButton::clicked, this, [=]{
             ui->comboBox->setCurrentIndex((int)(MyPark.getStack(i).getPlace()));
             ui->plateNumEdit->setText(MyPark.getStack(i).getPlate_num());
+            ui->comboBox->setCurrentIndex(i);
         });
         connect(car_queue[i], &QPushButton::clicked, this, [=]{
             ui->comboBox->setCurrentIndex((int)(MyPark.getQueue(i).getPlace()));
             ui->plateNumEdit->setText(MyPark.getQueue(i).getPlate_num());
+            ui->comboBox->setCurrentIndex(i);
         });
         car_park[i]->hide();
         car_queue[i]->hide();

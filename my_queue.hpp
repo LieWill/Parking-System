@@ -14,11 +14,7 @@ private:
     size_t buf_num = 0; // 缓冲区中元素个数
 
 public:
-    queue(size_t cap = 10)      // 构造函数
-    {
-        data = new T[cap];
-        capacity = cap;
-    }
+    queue(size_t cap = 10);      // 构造函数
     queue(const queue &copy);   // 实现深拷贝
     ~queue() { delete[] data; } // 析构函数
     std::optional<T> extract(size_t index);

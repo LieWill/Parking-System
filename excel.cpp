@@ -91,15 +91,15 @@ bool excel::Read(class log &data, park &Park)
         qDebug() << i << ":" << temp2;
         if(temp2.at(0).isValid())
         {
-            carParking carTemp;//(temp2.at(0).toString());
+            carParking carTemp(temp2.at(0).toString());
             carTemp.setInTime(QTime::fromString(temp2.at(1).toString()));
             carTemp.setInDate(QDate::fromString(temp2.at(2).toString(),"yyyy/MM/dd"));
             stack.push(carTemp);
             if(temp2.at(3).isValid())
             {
-                carParking queueTemp;//(temp2.at(0).toString());
-                queueTemp.setInTime(QTime::fromString(temp2.at(1).toString()));
-                queueTemp.setInDate(QDate::fromString(temp2.at(2).toString(),"yyyy/MM/dd"));
+                carParking queueTemp(temp2.at(3).toString());
+                queueTemp.setInTime(QTime::fromString(temp2.at(4).toString()));
+                queueTemp.setInDate(QDate::fromString(temp2.at(5).toString(),"yyyy/MM/dd"));
                 queue.push(queueTemp);
             }
         }

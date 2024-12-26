@@ -1,0 +1,16 @@
+# ninja log v6
+6	836	7568142880010195	park2_autogen/timestamp	858922ba64ec4143
+6	836	7568142880010195	park2_autogen/mocs_compilation.cpp	858922ba64ec4143
+6	836	7568142880010195	D:/code/application/QT/park2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Release/park2_autogen/timestamp	858922ba64ec4143
+6	836	7568142880010195	D:/code/application/QT/park2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Release/park2_autogen/mocs_compilation.cpp	858922ba64ec4143
+927	1162	7568142882412394	CMakeFiles/park2.dir/my_queue.cpp.obj	ea44db5542314a1
+918	2527	7568142882332202	CMakeFiles/park2.dir/my_stack.cpp.obj	3c185eae832580fc
+873	2688	7568142881883477	CMakeFiles/park2.dir/car.cpp.obj	371c5a6657d79290
+909	2692	7568142882236844	CMakeFiles/park2.dir/carParking.cpp.obj	ffba079e587eb5b0
+900	2783	7568142882151634	CMakeFiles/park2.dir/park.cpp.obj	959ad009f8c2e18b
+892	2837	7568142882066310	CMakeFiles/park2.dir/log.cpp.obj	c65c0eafd1e62e2d
+857	3070	7568142881713199	CMakeFiles/park2.dir/main.cpp.obj	3eebf878196b1035
+847	3111	7568142881622857	CMakeFiles/park2.dir/park2_autogen/mocs_compilation.cpp.obj	ccc760dfeffec9d5
+882	3495	7568142881977197	CMakeFiles/park2.dir/excel.cpp.obj	61fcce896b878282
+865	4125	7568142881800001	CMakeFiles/park2.dir/mainwindow.cpp.obj	3f2679d526b41b82
+4126	4812	7568142914406344	park2.exe	258909a2356114da

@@ -11,7 +11,7 @@ park::park(size_t size)
 void park::setPark(stack<carParking> park, queue<carParking> queue)
 {
     car_park = park;    // 将传入的停车场栈赋值给成员变量 car_park
-    // car_queue = queue; // 此行被注释，因此不设置等待队列
+    car_queue = queue; // 此行被注释，因此不设置等待队列
 }
 
 // 车辆进入停车场

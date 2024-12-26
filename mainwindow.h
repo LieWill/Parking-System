@@ -26,16 +26,8 @@ public:
     ~MainWindow();
 
 signals:
-    void signal1();
-    void signal2();
-    void come1(QString& str);
-    void come2(QString& str);
-    void come3(QString& str);
-
 
 private slots:
-    void slot();
-    void come(QString& str);
     void saveLog();    // 保存数据
     void importLog();    // 导入数据
 

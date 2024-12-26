@@ -1,16 +1,27 @@
 #include "my_queue.hpp"
+#include "QDebug"
 
 // 模板类 queue 的拷贝构造函数
 // 创建一个新的队列并复制另一个队列的内容
 template<typename T>
+queue<T>::queue(size_t cap)
+{
+    data = new T[cap];
+    capacity = cap;
+}
+
+template<typename T>
 queue<T>::queue(const queue &copy)
-    :   data(new T[copy.capacity])    // 动态分配与被拷贝队列相同容量的数组
-    ,   rear(copy.rear)               // 设置队列尾部指针
+    :   capacity(copy.capacity)    // 动态分配与被拷贝队列相同容量的数组
+    ,   data(new T[copy.buf_num])
+    ,   rear(copy.buf_num)               // 设置队列尾部部指针
     ,   buf_num(copy.buf_num)         // 设置队列当前元素数量
-    ,   capacity(copy.capacity)        // 设置队列的容量
 {
     for(int i = 0; i < buf_num; i++)  // 复制数据
+    {
         data[i] = copy.data[i + copy.front];
+        qDebug() << copy.data[i].toString() << data[i].toString();
+    }
 }
 
 // 从队列中提取指定索引的元素

@@ -64,7 +64,7 @@ void carParking::parkOut()
 // 计算停车费用
 double carParking::getCost()
 {
-    if (_end.isValid() && _start.isValid() && _end > _start)
+    if (_end.isValid() && _end > _start)
     {
         quint64 differ = _end.toSecsSinceEpoch() - _start.toSecsSinceEpoch(); // 计算停车时长（秒）
         return differ * (cost / 3600);  // 根据时长和每小时费用计算总费用

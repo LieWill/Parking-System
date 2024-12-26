@@ -14,13 +14,16 @@ stack<T>::stack(size_t cap)
 // 创建一个新的栈并复制另一个栈的内容
 template<typename T>
 stack<T>::stack(const stack &copy)
-    :   data(new T[copy.capacity])    // 动态分配与被拷贝栈相同容量的数组
+    :   capacity(copy.capacity)    // 动态分配与被拷贝栈相同容量的数组
+    ,   data(new T[copy.capacity])
     ,   top(copy.top)                 // 设置栈顶指针
-    ,   capacity(copy.capacity)        // 设置栈的容量
 {
     qDebug() << "执行拷贝函数，拷贝容量为" << copy.capacity << "所有数量为" << copy.top;
     for(int i = 0; i < top; i++)      // 复制数据
+    {
         data[i] = copy.data[i];
+        qDebug() << copy.data[i].toString() << data[i].toString();
+    }
 }
 
 // 向栈中压入一个元素
@@ -28,7 +31,7 @@ stack<T>::stack(const stack &copy)
 template <typename T>
 bool stack<T>::push(T value)
 {
-    if (top == capacity) // 检查栈是否已满
+    if (top >= capacity) // 检查栈是否已满
         return false;
     else
         data[top++] = value; // 将元素添加到栈顶并递增栈顶指针
@@ -48,12 +51,26 @@ std::optional<size_t> stack<T>::find(T &value) const
     return std::nullopt; // 如果未找到，返回空值
 }
 
+template<typename T>
+stack<T> &stack<T>::operator=(stack<T> &copy)
+{
+    delete data;
+    capacity = copy.capacity;
+    data = new T[capacity];
+    qDebug() << "等号运算符";
+    for(int i = 0; i < top; i++)      // 复制数据
+    {
+        data[i] = copy.data[i];
+        qDebug() << copy.data[i].toString() << data[i].toString();
+    }
+}
+
 // 从栈中弹出一个元素
 // 如果栈为空，返回空值；否则返回栈顶元素
 template <typename T>
 std::optional<T> stack<T>::pop()
 {
-    if (top == 0) // 检查栈是否为空
+    if (top <= 0) // 检查栈是否为空
         return std::nullopt; // 如果为空，返回空值
     else
         return data[--top]; // 如果不为空，递减栈顶指针并返回原栈顶元素

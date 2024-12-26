@@ -10,10 +10,17 @@ Car::Car(carPlace place, QString plate_num)
     ,   _plate_num(plate_num)
 {}
 
-Car::Car(const QString plate)
-    :   _plate_num(plate)
+Car::Car(const QString &plate)
 {
-    _place = (carPlace)1;//index;
+    int index = 0;
+    for(; index < 34; index++)
+    {
+        // 判断字符串是否以指定内容开头，如果是，返回true，否则，返回false。
+        if(plate.startsWith(setStatusTip[index]))
+            break;
+    }
+    _place = (carPlace)index;
+    _plate_num = QString(plate.mid(setStatusTip[index].size())); // 从中文字符串后获取字符串
 }
 
 // 默认构造函数，随机生成车辆位置和车牌号
@@ -30,10 +37,6 @@ Car::Car()
     }
 }
 
-// Car::~Car()
-// {
-//     // delete _plate_num;
-// }
 
 // 使用qDeBug打印车辆信息
 void Car::show()
@@ -44,7 +47,7 @@ void Car::show()
 // 将车辆信息转换为字符串
 QString Car::toString()
 {
-    return QString(setStatusTip[(int)_place]+_plate_num); // 返回车辆位置和车牌号的字符串
+    return QString(setStatusTip[(int)_place] + _plate_num); // 返回车辆位置和车牌号的字符串
 }
 
 

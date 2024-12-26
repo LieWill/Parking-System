@@ -18,6 +18,7 @@ public:
     bool push(T value);                  // 入栈
     std::optional<T> pop();              // 出栈
     std::optional<size_t> find(T &value) const;// 查找
+    stack &operator=(stack &data);
     inline bool isEmpty() const          // 判断是否为空
     {
         return top == 0;                 // 栈空
